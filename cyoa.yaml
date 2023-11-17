@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: cyoasvc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: cyoapod
+status:
+  loadBalancer: {}
+---
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: cyoapod
+  name: cyoapod
+spec:
+  containers:
+  - image: gophercise-choose-your-own-adventure:kind
+    stdin: true
+    tty: true
+    name: cyoapod
+    ports:
+    - containerPort: 8080
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  imagePullSecrets:
+  - name: regcred
+status: {}
