@@ -21,4 +21,4 @@ COPY --from=compiler /usr/local/bin/app /app
 COPY assets /assets
 COPY templates /templates
 
-ENTRYPOINT ["/app/cyoaweb"]
+ENTRYPOINT ["/app/gophercise-03-cyoa"]

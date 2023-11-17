@@ -1,9 +1,4 @@
-package cyoatypes
-
-import (
-	"encoding/json"
-	"io"
-)
+package model
 
 type Chapter struct {
 	Name    string    `json:"name"`
@@ -17,16 +12,3 @@ type options struct {
 }
 
 type Story map[string]Chapter
-
-func JSONtoMap(r io.Reader) Story {
-	jsonData := json.NewDecoder(r)
-	var c []Chapter
-	jsonData.Decode(&c)
-
-	s := Story{}
-	for i, v := range c {
-		s["/"+c[i].Name] = v
-	}
-
-	return s
-}
