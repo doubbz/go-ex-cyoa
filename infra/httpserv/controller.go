@@ -3,6 +3,7 @@ package httpserv
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -12,7 +13,10 @@ func (h StoryHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	hdc := *h.dc
 	if story, found := hdc.GetByPath(r.URL.Path); found {
 		tmpl := template.Must(template.ParseFiles("templates/layout.html"))
-		tmpl.Execute(w, story)
+		err := tmpl.Execute(w, story)
+		if (err != nil) {
+			log.Fatalln(err)
+		}
 		return
 	}
 	if tryRedirect(w, r) {

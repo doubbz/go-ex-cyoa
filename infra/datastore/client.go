@@ -34,7 +34,10 @@ func (c Client) GetByPath(path string) (model.Chapter, bool) {
 func loadInMemory(r io.Reader) model.Story {
 	jsonData := json.NewDecoder(r)
 	var c []model.Chapter
-	jsonData.Decode(&c)
+	err := jsonData.Decode(&c)
+	if (err != nil) {
+		log.Fatalln(err)
+	}
 
 	s := model.Story{}
 	for i, v := range c {
