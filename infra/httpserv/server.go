@@ -12,15 +12,15 @@ type Server struct {
 }
 
 type StoryHandler struct {
-	dc *dataCient
+	Dc dataClient
 }
 
-type dataCient interface {
+type dataClient interface {
 	GetByPath(path string) (model.Chapter, bool)
 }
 
-func NewServer(dc dataCient) Server {
-	return Server{StoryHandler{&dc}}
+func NewServer(dc dataClient) Server {
+	return Server{StoryHandler{dc}}
 }
 
 func (s Server) Serve() {

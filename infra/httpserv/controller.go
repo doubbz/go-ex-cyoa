@@ -10,7 +10,7 @@ import (
 const storyIntro = "/intro"
 
 func (h StoryHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	hdc := *h.dc
+	hdc := h.Dc
 	if story, found := hdc.GetByPath(r.URL.Path); found {
 		tmpl := template.Must(template.ParseFiles("templates/layout.html"))
 		err := tmpl.Execute(w, story)
