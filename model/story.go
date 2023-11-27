@@ -4,9 +4,9 @@ type Chapter struct {
 	Name    string    `json:"name"`
 	Title   string    `json:"title"`
 	Story   []string  `json:"story"`
-	Options []options `json:"options"`
+	Options []Options `json:"options"`
 }
-type options struct {
+type Options struct {
 	Text string `json:"text"`
 	Arc  string `json:"arc"`
 }
