@@ -4,8 +4,9 @@ import (
 	"encoding/json"
 	"gophercise-03-cyoa/model"
 	"io"
-	"log"
 	"os"
+
+	"github.com/rs/zerolog/log"
 )
 
 type Client struct {
@@ -13,12 +14,19 @@ type Client struct {
 }
 
 func NewClient() Client {
-	file, err := os.Open("assets/story.json")
-	
-	if err != nil {
-		log.Fatal(err)
+	dataPath := os.Getenv("APP_DATA_PATH")
+	if (dataPath == "") {
+		dataPath = "assets/story.json"
 	}
-	defer file.Close()
+	file, err := os.Open(dataPath)
+	if err != nil {
+		log.Fatal().Err(err).Msg("Error during data read.")
+	}
+	defer func() {
+		if file != nil {
+			_ = file.Close()
+		}
+	}()
 	
 	s := loadInMemory(file)
 
@@ -36,7 +44,7 @@ func loadInMemory(r io.Reader) model.Story {
 	var c []model.Chapter
 	err := jsonData.Decode(&c)
 	if (err != nil) {
-		log.Fatalln(err)
+		log.Error().Err(err).Stack().Msg("Something went wrong while decoding the JSON.")
 	}
 
 	s := model.Story{}

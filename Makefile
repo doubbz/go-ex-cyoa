@@ -20,5 +20,8 @@ help:
 lint:
 	@docker run -t --rm -v .:/app -w /app golangci/golangci-lint:v1.55.2 golangci-lint run -v
 
-dev: 
+dev: 			## Run the application in development mode
 	@go run .
+
+vet:			## Run go vet
+	@go vet -json
