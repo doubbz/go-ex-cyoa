@@ -2,7 +2,7 @@ package datastore
 
 import (
 	"encoding/json"
-	"gophercise-03-cyoa/model"
+	"gophercise-03-cyoa/internal/model"
 	"io"
 	"os"
 

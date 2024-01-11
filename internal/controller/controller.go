@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"gophercise-03-cyoa/model"
+	"gophercise-03-cyoa/internal/model"
 	"html/template"
 	"net/http"
 	"sync"

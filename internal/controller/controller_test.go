@@ -1,8 +1,8 @@
 package controller_test
 
 import (
-	"gophercise-03-cyoa/controller"
-	"gophercise-03-cyoa/model"
+	"gophercise-03-cyoa/internal/controller"
+	"gophercise-03-cyoa/internal/model"
 	"html/template"
 	"io"
 	"net/http"

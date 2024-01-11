@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"gophercise-03-cyoa/controller"
-	"gophercise-03-cyoa/datastore"
+	"gophercise-03-cyoa/internal/controller"
+	"gophercise-03-cyoa/internal/datastore"
 	"html/template"
 	"net/http"
 	"os"
